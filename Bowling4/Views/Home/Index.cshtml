@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IndexViewModel
+
+@if (Model.TeamName == null)
+{
+    <h4>All Bowlers</h4>
+}
+
+@if (Model.TeamName != null)
+{
+    <h4>The @Model.TeamName Team</h4>
+}
+<br />
+<div>
+    <table class="table-center table-striped">
+        <thead>
+            <tr>
+                <!-- Table Columns-->
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Init.</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Each Record in the Database-->
+            @foreach (var x in Model.Bowlers)
+            {
+            <tr>
+                <td>@x.BowlerLastName</td>
+                <td>@x.BowlerFirstName</td>
+                <td>@x.BowlerMiddleInit</td>
+                <td>@x.BowlerAddress</td>
+                <td>@x.BowlerCity</td>
+                <td>@x.BowlerState</td>
+                <td>@x.BowlerZip</td>
+                <td>@x.BowlerPhoneNumber</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Pagination Stylization -->
+<div page-info="@Model.PageNumberingInfo"
+     page-url-teamname="@Model.TeamName"
+     page-classes-enabled="true"
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right m-1">
+
+</div>
